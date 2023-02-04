@@ -3,26 +3,29 @@ import Link from 'next/link';
 
 const Cat = ({events, city}) => {
     return (
-        <>
+        <div className='cat_events'>
             <h1>All events in {city}</h1>
-            {
-                events.map(event => {
-                    return (
-                        <Link key={event.id} href={`/events/${city}/${event.id}`}>
-                            <Image 
-                                src={event.image}
-                                width={200}
-                                height={200}
-                                alt={event.title}
-                            />
-                            <h2>{event.title}</h2>
-                            <p>{event.description}</p>
-                        </Link>
-                    )
-                })
-            }
-
-        </>
+            <div className='content'>
+                {
+                    events.map(event => {
+                        return (
+                            <Link key={event.id} href={`/events/${city}/${event.id}`}>
+                                <div className='card'>
+                                    <Image 
+                                        src={event.image}
+                                        width={200}
+                                        height={200}
+                                        alt={event.title}
+                                    />
+                                    <h2>{event.title}</h2>
+                                    <p>{event.description}</p>
+                                </div>
+                            </Link>
+                        )
+                    })
+                }
+            </div>
+        </div>
     )
 }
 

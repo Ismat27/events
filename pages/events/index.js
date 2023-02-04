@@ -12,20 +12,21 @@ export async function getStaticProps () {
 
 const EventsPage = ({events_categories}) => {
     return (
-        <div>
-            <h1>Events Page</h1>
+        <div className="events_page">
             {
             events_categories.map(cat => {
                 const {id, title, image} = cat
                 return (
                     <Link key={id} href={`/events/${id}`}>
-                        <Image 
-                        src={image}
-                        alt={title}
-                        height={200}
-                        width={200}
-                        />
-                        <h2>{title}</h2>
+                        <div className='card'>
+                            <Image 
+                            src={image}
+                            alt={title}
+                            height={500}
+                            width={500}
+                            />
+                            <h2>{title}</h2>
+                        </div>
                     </Link>
                 )
             })

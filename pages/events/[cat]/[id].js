@@ -1,20 +1,9 @@
-import Image from 'next/image';
+import SingleEvent from '@/src/components/events/singleEvent';
 
 const EventPage = ({eventData, city}) => {
     return (
         <>
-            <h1>{city}</h1>
-            <div>
-                <Image 
-                    width={200}
-                    height={200}
-                    src={eventData.image}
-                    alt={eventData.title}
-                />
-                <h2>{eventData.title}</h2>
-                <p>{eventData.description}</p>
-            </div>
-
+            <SingleEvent data={eventData}/>
         </>
     )
 }
