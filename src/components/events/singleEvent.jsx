@@ -9,7 +9,28 @@ const SingleEvent = ({data}) => {
     const [message, setMessage] = useState('');
 
     const onSubmit = async (event) => {
+        const email = inputEmail.current.value
+        const eventId = router.query.id
         event.preventDefault()
+        const validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+
+        if (!email.match(validRegex)) {
+            setMessage('Please enter a correct email address');
+            return
+        }
+        try {
+            const response = await fetch('/api/email-registration', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', },
+                body: JSON.stringify({email, eventId})
+            })
+            if (!response.ok) throw new Error(`Error: ${response.status}`);
+            const data = await response.json()
+            setMessage(data.message);
+            inputEmail.current.value = ''
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     return (
